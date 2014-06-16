@@ -1,8 +1,6 @@
 package game;
 
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.Timer;
 
 import java.awt.BorderLayout;
 import java.awt.GridLayout;
@@ -108,30 +106,8 @@ public class Board extends JPanel implements  ActionListener {
 				if(candy.isNext(other)){
 					candy.combine(other);
 					
-					//-----------------------------------------
-					this.updateBoard(candy.getBoard());
 					
-					
-					final Candy other = candy;
-					final Board sec = this;
-					
-					Timer timer = new Timer(10, new ActionListener() {
-						  @Override
-						  public void actionPerformed(ActionEvent arg0) {
-							  other.transformAll();
-							  sec.updateBoard(other.getBoard());
-						  }
-						});
-						timer.setRepeats(false); // Only execute once
-						timer.start(); // Go go go!
-						
-						
-						 
-						 
-						 //--------------------------------------
 					firstMove=true;
-					//candy.transformAll();
-					//candy.updateBoard(this);
 				}
 				else{
 					other = candy;
