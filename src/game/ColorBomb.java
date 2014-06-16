@@ -31,36 +31,41 @@ public class ColorBomb extends Candy
 	public void accept(Visitor visitor) {
 		// TODO implement me	
 	}
-	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!--  end-user-doc  -->
-	 * @generated
-	 * @ordered
-	 */
-	
+	 
 	public void visit(Candy candy) {
 		// TODO implement me	
 	}
 	@Override
 	public boolean visit(RegularCandy candy) {
-		// TODO Auto-generated method stub
+		return true;
 		
 	}
 	@Override
 	public boolean visit(StripedCandy candy) {
-		// TODO Auto-generated method stub
+		return true;
 		
 	}
 	@Override
 	public boolean visit(WrappedCandy candy) {
-		// TODO Auto-generated method stub
+		return true;
 		
 	}
 	@Override
 	public boolean visit(ColorBomb candy) {
-		// TODO Auto-generated method stub
+		return true;	
+	}
+	
+	@Override
+	protected void crush(int color) { //need to check what to do about inheritance
+		super.crush();
 		
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board.length; j++) {
+				if(board[i][j].color==color)
+					board[i][j].crush();
+
+			}
+		}
 	}
 }
 

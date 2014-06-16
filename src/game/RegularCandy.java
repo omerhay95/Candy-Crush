@@ -103,7 +103,6 @@ public class RegularCandy extends Candy
 			int i=up+down;
 			while (i>=0) {
 				this.board[tempRow][col].crush();
-				
 				i--;
 				tempRow++;
 			}
@@ -158,10 +157,6 @@ public class RegularCandy extends Candy
 		return true;
 		
 	}
-
-
-
-	
 
 }
 
