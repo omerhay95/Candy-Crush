@@ -1,13 +1,17 @@
 package game;
 
+import javax.swing.ImageIcon;
+
 
 
 
 public class WrappedCandy extends Candy
 {
 	
-	public WrappedCandy(){
-		super();
+	public WrappedCandy(Candy[][] board, int row, int column, int color){
+		super(board, row, column,color);
+		this.setIcon(new ImageIcon("./src/pictures/pictures/WrappedCandy"+COLORS.get(color)+".png"));
+//		this.setText(row+", "+col);
 	}
 	
 	

@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 
@@ -49,6 +50,8 @@ public abstract class Candy extends JButton implements Visited, Visitor
 	public int row;//IIIIIIIIIIIADIASIDAOSIDA
 	public int col;//CHANGE THIS LATER
 	String image;
+	
+
 	public Candy(Candy[][] board, int row, int column){
 		Random rnd = new Random();
 		color = rnd.nextInt(6);
@@ -84,6 +87,7 @@ public abstract class Candy extends JButton implements Visited, Visitor
 	}
 	
 	protected  void updateBoard(ActionListener listener) {
+		boolean change = true;
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board.length; j++) {
 				switch (board[i][j].transform) {
@@ -107,13 +111,16 @@ public abstract class Candy extends JButton implements Visited, Visitor
 					this.board[i][j].addActionListener(listener);
 					break;
 				case 3:
-					this.board[i][j]=new WrappedCandy();
+					this.board[i][j]=new WrappedCandy(board, i, j,this.board[i][j].color);
 					this.board[i][j].addActionListener(listener);
 					break;
 				case 4:
 					this.board[i][j]=new ColorBomb(board, i, j);
 					this.board[i][j].addActionListener(listener);
 					break;
+				case -10:
+					this.board[i][j].setIcon(new ImageIcon("./src/pictures/pictures/Colorbomb.png"));
+					change = false;
 				default:
 					break;
 					
@@ -121,6 +128,7 @@ public abstract class Candy extends JButton implements Visited, Visitor
 				
 			}
 		}
+		if(change)
 		resetTransorm();
 	}
 	
@@ -135,8 +143,17 @@ public abstract class Candy extends JButton implements Visited, Visitor
 	
 	
 	protected void crush() {
-		transform=-1;
+		transform=-10;
 		
+	}
+	
+	protected void transformAll() {
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board.length; j++) {
+				if(this.board[i][j].transform==-10)
+					this.board[i][j].transform=-1;
+			}
+		}
 	}
 	
 	protected void setTransform(int tranform) {
