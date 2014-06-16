@@ -49,6 +49,49 @@ public class StripedCandy extends Candy
 	public void visit(Candy candy) {
 		// TODO implement me	
 	}
+	
+	protected void crush() {
+		super.crush();
+		int i = 0;
+		if (isVertical) {
+			while (i < board.length) {
+				if(board[i][col].transform != -10 && board[i][col].transform != -1)
+				board[i][col].crush();
+				i++;
+			}
+		} else {
+			while (i < board.length) {
+				if(board[row][i].transform != -10 && board[row][i].transform != -1)
+				board[row][i].crush();
+				i++;
+			}
+		}
+	}
+
+
+	@Override
+	public boolean visit(RegularCandy candy) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean visit(StripedCandy candy) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean visit(WrappedCandy candy) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public boolean visit(ColorBomb candy) {
+		// TODO Auto-generated method stub
+		return false;
+	}
 
 }
 
