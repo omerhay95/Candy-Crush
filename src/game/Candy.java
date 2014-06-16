@@ -3,6 +3,7 @@ package game;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.Console;
 import java.security.KeyStore.PrivateKeyEntry;
 import java.util.Collections; 
 import java.util.HashMap;
@@ -10,6 +11,7 @@ import java.util.Map;
 import java.util.Random;
 
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 
 /**
@@ -83,6 +85,24 @@ public abstract class Candy extends JButton implements Visited, Visitor
 		return board;
 	}
 	
+	protected void toBeCrushed() {
+		//show which candies will be crushed
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board.length; j++) {
+				switch (board[i][j].transform) {
+				case -1:
+					board[i][j].setText("X");
+					break;
+					default:
+						break;
+						
+				}
+			}
+		}
+		
+		//end
+	}
+	
 	protected  void updateBoard(ActionListener listener) {
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board.length; j++) {
@@ -132,7 +152,20 @@ public abstract class Candy extends JButton implements Visited, Visitor
 		}
 	}
 	
-	
+	private void printBoard(){
+		for (int i = 0; i < board.length; i++) {
+			for (int j = 0; j < board.length; j++) {
+				if(board[i][j].transform==-1)
+					System.out.print("X");
+					else 
+						System.out.print("0 ");
+				
+			}
+			System.out.println();
+		}
+		System.out.println();
+		System.out.println();
+	}
 	
 	protected void crush() {
 		transform=-1;

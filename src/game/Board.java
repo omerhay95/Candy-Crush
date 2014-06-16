@@ -6,6 +6,8 @@ import java.awt.BorderLayout;
 import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.font.TextHitInfo;
+import java.util.concurrent.TimeUnit;
 
 public class Board extends JPanel implements  ActionListener {
 	
@@ -27,7 +29,7 @@ public class Board extends JPanel implements  ActionListener {
 	//private Candy createCandy(){
 	//	Candy candy = new RegularCandy();
 	//}
-	private void toGUI() {
+	public void toGUI() {  			//TO CHANGE THIS BACK TO PRIVATE
 		
 		removeAll();
 		setLayout(new GridLayout(SIZE, SIZE, 10, 10));
@@ -105,8 +107,6 @@ public class Board extends JPanel implements  ActionListener {
 			else{
 				if(candy.isNext(other)){
 					candy.combine(other);
-					
-					
 					firstMove=true;
 				}
 				else{
@@ -116,6 +116,7 @@ public class Board extends JPanel implements  ActionListener {
 				}
 			}
 			
+			 
 			this.updateBoard(candy.getBoard());
 		}
 		

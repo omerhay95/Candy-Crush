@@ -79,13 +79,15 @@ public class StripedCandy extends Candy {
 		super.crush();
 		int i = 0;
 		if (isVertical) {
-			while (i < board.length) {
-				board[i][col].setTransform(-1);
+			while (i < board.length) 
+				if(i!=this.row&&board[i][col].transform!=-1){
+				board[i][col].crush();
 				i++;
 			}
 		} else {
 			while (i < board.length) {
-				board[row][i].setTransform(-1);
+				if(i!=this.col&&board[row][i].transform!=-1)
+				board[row][i].crush();
 				i++;
 			}
 		}
